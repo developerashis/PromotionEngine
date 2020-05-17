@@ -1,8 +1,6 @@
 ﻿using PromotionEngine.Lib.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace PromotionEngine.Lib.Strategy
 {
@@ -15,7 +13,19 @@ namespace PromotionEngine.Lib.Strategy
 
         public override decimal Calculate()
         {
-            decimal totalPrice = 0.0M;            
+            decimal totalPrice = 0.0M;
+            int currentQty = Carts.FirstOrDefault().Qty;
+            while (currentQty > 0)
+            {
+                if (currentQty >= NoOfItemsCombineTo)
+                {
+                    totalPrice += FixedPrice;
+                    currentQty -= NoOfItemsCombineTo;
+                    continue;
+                }
+                totalPrice += Carts.FirstOrDefault().Product.Price;
+                currentQty -= 1;
+            }
             return totalPrice;
         }
     }

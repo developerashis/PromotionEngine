@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PromotionEngine.Lib.Strategy
+﻿namespace PromotionEngine.Lib.Strategy
 {
     public class PromotionContext
     {
